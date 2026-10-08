@@ -3,7 +3,7 @@
 A lightweight, good-looking planning poker app for agile teams – **no backend, no sign-up**.
 Create a room, share the link, estimate together.
 
-**Live:** https://davidreineke-main.github.io/openestimate/
+**Live:** https://openestimate.de/
 
 ## Features
 
@@ -70,8 +70,8 @@ VITE_NOSTR_RELAYS=wss://relay.example.com,wss://relay2.example.com npm run build
 
 ## Deployment
 
-Pushes to `main` are built and deployed by `.github/workflows/deploy.yml`.
-In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+Pushes to `main` are built and deployed by `.github/workflows/deploy.yml` to GitHub Pages,
+served under the custom domain configured in **Settings → Pages** (`url` in `site.config.js` must match).
 
 ## License
 
