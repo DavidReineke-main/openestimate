@@ -1,0 +1,14 @@
+{
+  "name": "OpenEstimate",
+  "short_name": "OpenEstimate",
+  "description": "Free, private peer-to-peer Planning Poker for agile teams.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f4fb",
+  "theme_color": "#7c5cff",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
