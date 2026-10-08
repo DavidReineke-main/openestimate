@@ -28,6 +28,32 @@ and the room keeps working when people leave.
 
 > Note: very restrictive corporate networks that block WebRTC may prevent peers from connecting.
 
+## Configuration
+
+All site settings live in [`site.config.js`](site.config.js):
+
+| Setting | Purpose |
+| --- | --- |
+| `url` | Public URL – used for canonical link, sitemap and social previews |
+| `buyMeACoffee` | Your Buy Me a Coffee username – shows the coffee button when set |
+| `owner` | Name, address and e-mail for the **Impressum** and privacy policy – the Impressum page and links appear once `name` is set |
+| `googleSiteVerification` | Optional Google Search Console verification token |
+
+Edit, commit, push – the site redeploys automatically.
+
+## SEO
+
+- Descriptive title/description, canonical URL, Open Graph & Twitter cards with a preview image
+- JSON-LD (`WebApplication` + `FAQPage`) for rich results
+- Crawlable landing content (features, how-to, FAQ) in plain HTML, translated to German at runtime
+- `sitemap.xml` is generated at build time – submit it in Google Search Console
+  (`robots.txt` only works at a domain root, so it is not used on a `github.io/<repo>` path; a custom domain helps ranking)
+
+## Privacy
+
+No backend, no database, no analytics, no cookies. See [`datenschutz.html`](datenschutz.html) for exactly which third
+parties technically see an IP address (GitHub Pages, public Nostr relays, STUN servers, the other peers in a room).
+
 ## Development
 
 ```bash

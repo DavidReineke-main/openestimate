@@ -8,7 +8,7 @@ const strings = {
     or: 'or',
     joinPlaceholder: 'Room code or invite link',
     join: 'Join',
-    p2pNote: 'Votes travel directly between browsers (WebRTC). Nothing is stored on a server.',
+    p2pNote: 'Free forever · no tracking · no backend. Votes travel directly between browsers (WebRTC).',
     joinRoom: 'Join room',
     spectator: 'Join as spectator',
     enter: "Let's go",
@@ -38,6 +38,9 @@ const strings = {
     becomePlayer: 'Play',
     copy: 'Copy',
     shareTitle: 'Join my Planning Poker room',
+    coffee: 'Buy me a coffee',
+    privacy: 'Privacy',
+    imprint: 'Imprint',
   },
   de: {
     tagline: 'Gemeinsam schätzen. Ohne Anmeldung, ohne Server – einfach Link teilen.',
@@ -48,7 +51,7 @@ const strings = {
     or: 'oder',
     joinPlaceholder: 'Raumcode oder Einladungslink',
     join: 'Beitreten',
-    p2pNote: 'Stimmen gehen direkt von Browser zu Browser (WebRTC). Nichts wird auf einem Server gespeichert.',
+    p2pNote: 'Für immer kostenlos · kein Tracking · kein Backend. Stimmen gehen direkt von Browser zu Browser (WebRTC).',
     joinRoom: 'Raum beitreten',
     spectator: 'Als Zuschauer beitreten',
     enter: 'Los geht’s',
@@ -78,11 +81,64 @@ const strings = {
     becomePlayer: 'Mitspielen',
     copy: 'Kopieren',
     shareTitle: 'Komm in meinen Planning-Poker-Raum',
+    coffee: 'Spendier mir einen Kaffee',
+    privacy: 'Datenschutz',
+    imprint: 'Impressum',
   },
+}
+
+// German translations for the static, crawlable content in index.html (English lives in the HTML itself).
+const staticDe = {
+  trustFree: '100 % kostenlos',
+  trustTracking: 'Kein Tracking, keine Cookies',
+  trustBackend: 'Kein Backend, keine Datenbank',
+  trustOss: 'Open Source',
+  aboutTitle: 'Kostenloses Online-Planning-Poker für agile Teams',
+  aboutLead:
+    'Open Planning Poker ist eine schnelle, schöne Scrum-Poker-App für Sprint Planning und Story-Point-Schätzungen. Raum erstellen, Link ans Team schicken und losschätzen – ohne Konto, Werbung oder Tracking. Die Stimmen gehen direkt von Browser zu Browser, nichts landet auf einem Server.',
+  f1t: 'Räume mit einem Klick',
+  f1p: 'Raum erstellen und das Team per Link oder Raumcode einladen. Niemand muss sich registrieren.',
+  f2t: 'Alle gängigen Kartensets',
+  f2p: 'Fibonacci, modifiziertes Fibonacci, T-Shirt-Größen und Zweierpotenzen – plus „?“ und Kaffeepause.',
+  f3t: 'Faire, verdeckte Abstimmung',
+  f3p: 'Die Karten bleiben verdeckt, bis jemand sie für alle gleichzeitig aufdeckt.',
+  f4t: 'Sofort Ergebnisse',
+  f4p: 'Durchschnitt, Kartenvorschlag, Einigkeit und Verteilung direkt nach dem Aufdecken.',
+  f5t: 'Privat by Design',
+  f5p: 'Peer-to-Peer per WebRTC. Kein Backend, keine Datenbank, keine Analyse-Tools, keine Cookies.',
+  f6t: 'Läuft überall',
+  f6p: 'Desktop oder Handy, hell oder dunkel, Deutsch oder Englisch – direkt im Browser.',
+  howTitle: 'So funktioniert’s',
+  how1: '<strong>Raum erstellen</strong> und Kartenset wählen.',
+  how2: '<strong>Einladungslink teilen</strong> mit deinem Team.',
+  how3: '<strong>Abstimmen, aufdecken, diskutieren</strong> – dann die nächste Runde starten.',
+  faqTitle: 'Häufige Fragen',
+  q1: 'Ist Open Planning Poker wirklich kostenlos?',
+  a1: 'Ja. Komplett kostenlos und Open Source – keine Bezahlpläne, keine Werbung, keine Begrenzung bei Räumen oder Teilnehmenden.',
+  q2: 'Brauche ich ein Konto?',
+  a2: 'Nein. Name eingeben, Raum erstellen, Einladungslink teilen. Niemand muss sich anmelden.',
+  q3: 'Werden meine Daten gespeichert oder getrackt?',
+  a3: 'Nein. Es gibt kein Backend, keine Datenbank, keine Analyse-Tools und keine Cookies. Die Stimmen gehen per WebRTC direkt zwischen den Browsern der Teilnehmenden hin und her. Details stehen in der <a href="./datenschutz.html">Datenschutzerklärung</a>.',
+  q4: 'Wie viele Personen passen in einen Raum?',
+  a4: 'Übliche Scrum-Teams bis etwa 15–20 Personen funktionieren gut. Da sich alle direkt verbinden, hängen sehr große Gruppen von den Browsern und Netzwerken der Teilnehmenden ab.',
+  q5: 'Was ist Planning Poker?',
+  a5: 'Planning Poker (auch Scrum Poker) ist eine Konsens-Technik zum Schätzen von Aufwänden in agilen Teams. Alle wählen verdeckt eine Karte, alle Karten werden gleichzeitig aufgedeckt und Unterschiede werden besprochen.',
+  supportText: 'Open Planning Poker ist kostenlos und bleibt es auch. Wenn es deinem Team Zeit spart, kannst du mir einen Kaffee spendieren.',
+  supportBtn: 'Spendier mir einen Kaffee',
+  privacy: 'Datenschutz',
+  imprint: 'Impressum',
 }
 
 export const lang = (navigator.language || 'en').toLowerCase().startsWith('de') ? 'de' : 'en'
 document.documentElement.lang = lang
+
+export function translateStatic(root = document) {
+  if (lang !== 'de') return
+  for (const el of root.querySelectorAll('[data-i18n]')) {
+    const v = staticDe[el.dataset.i18n]
+    if (v) el.innerHTML = v
+  }
+}
 
 export function t(key, ...args) {
   const v = strings[lang][key] ?? strings.en[key] ?? key

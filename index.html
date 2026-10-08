@@ -3,16 +3,193 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Open Planning Poker – free, serverless, peer-to-peer estimation for agile teams." />
+    <title>Free Planning Poker Online – No Sign-up, No Tracking | Open Planning Poker</title>
+    <meta name="description" content="Free online Planning Poker (Scrum Poker) for agile teams. Create a room, share the link and estimate story points together – no sign-up, no ads, no tracking, no backend. Open source." />
+    <meta name="keywords" content="planning poker, scrum poker, planning poker online, free planning poker, agile estimation, story points, sprint planning, fibonacci, t-shirt sizing, planning poker kostenlos" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Open Planning Poker" />
     <meta name="theme-color" content="#7c5cff" />
+    <link rel="canonical" href="{{SITE_URL}}" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <title>Open Planning Poker</title>
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="./sitemap.xml" />
+    <!--if:google-verification--><meta name="google-site-verification" content="{{GOOGLE_SITE_VERIFICATION}}" /><!--endif:google-verification-->
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Open Planning Poker" />
+    <meta property="og:title" content="Open Planning Poker – free, private Planning Poker for agile teams" />
+    <meta property="og:description" content="Create a room, share the link, estimate together. 100% free, no sign-up, no tracking, no backend." />
+    <meta property="og:url" content="{{SITE_URL}}" />
+    <meta property="og:image" content="{{SITE_URL}}og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Open Planning Poker – cards on a table" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Open Planning Poker – free, private Planning Poker" />
+    <meta name="twitter:description" content="Create a room, share the link, estimate together. No sign-up, no tracking, no backend." />
+    <meta name="twitter:image" content="{{SITE_URL}}og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "name": "Open Planning Poker",
+            "alternateName": ["Scrum Poker", "Planning Poker Online"],
+            "url": "{{SITE_URL}}",
+            "image": "{{SITE_URL}}og-image.png",
+            "description": "Free, open-source online Planning Poker for agile teams. Peer-to-peer, no sign-up, no tracking, no backend.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Any (web browser)",
+            "browserRequirements": "Requires a modern browser with WebRTC support",
+            "inLanguage": ["en", "de"],
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "featureList": [
+              "Create rooms and invite your team with a link",
+              "Fibonacci, modified Fibonacci, T-shirt sizes and powers of 2",
+              "Hidden votes with synchronized reveal",
+              "Average, suggestion, agreement and vote distribution",
+              "Spectator mode",
+              "No account, no tracking, no backend"
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is Open Planning Poker really free?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is completely free and open source – no paid plans, no ads, no limits on rooms or participants." }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need an account?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. Enter a name, create a room and share the invite link. Nobody needs to sign up." }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my data stored or tracked?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. There is no backend, no database, no analytics and no cookies. Votes travel directly between the participants' browsers via WebRTC." }
+              },
+              {
+                "@type": "Question",
+                "name": "How many people can join a room?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Typical scrum teams of up to about 15–20 people work well. Because everyone connects directly, very large groups depend on the participants' browsers and networks." }
+              },
+              {
+                "@type": "Question",
+                "name": "What is Planning Poker?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Planning Poker (also called Scrum Poker) is a consensus-based technique for estimating effort in agile teams. Everyone picks a card in secret, all cards are revealed at once and differences are discussed." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
     <script>
       try { const t = localStorage.getItem('opp:theme'); if (t) document.documentElement.dataset.theme = JSON.parse(t) } catch {}
     </script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <noscript>
+        <p style="text-align:center;padding:48px 16px">Open Planning Poker needs JavaScript to run. / Open Planning Poker benötigt JavaScript.</p>
+      </noscript>
+    </div>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <ul class="trust">
+        <li><span aria-hidden="true">💸</span> <span data-i18n="trustFree">100% free</span></li>
+        <li><span aria-hidden="true">🙈</span> <span data-i18n="trustTracking">No tracking, no cookies</span></li>
+        <li><span aria-hidden="true">🛰️</span> <span data-i18n="trustBackend">No backend, no database</span></li>
+        <li><span aria-hidden="true">🔓</span> <span data-i18n="trustOss">Open source</span></li>
+      </ul>
+
+      <h2 id="about-title" data-i18n="aboutTitle">Free online Planning Poker for agile teams</h2>
+      <p class="lead" data-i18n="aboutLead">
+        Open Planning Poker is a fast, good-looking Scrum Poker app for sprint planning and story point estimation.
+        Create a room, send the link to your team and start estimating – without accounts, ads or tracking.
+        Votes go straight from browser to browser, so nothing ever lands on a server.
+      </p>
+
+      <div class="features">
+        <article>
+          <h3 data-i18n="f1t">Rooms in one click</h3>
+          <p data-i18n="f1p">Create a room and invite your team with a link or room code. No sign-up for anyone.</p>
+        </article>
+        <article>
+          <h3 data-i18n="f2t">All the usual decks</h3>
+          <p data-i18n="f2p">Fibonacci, modified Fibonacci, T-shirt sizes and powers of 2 – plus “?” and coffee break.</p>
+        </article>
+        <article>
+          <h3 data-i18n="f3t">Fair, hidden voting</h3>
+          <p data-i18n="f3p">Cards stay face down until someone reveals them for everybody at the same time.</p>
+        </article>
+        <article>
+          <h3 data-i18n="f4t">Instant results</h3>
+          <p data-i18n="f4p">Average, suggested card, agreement and vote distribution right after the reveal.</p>
+        </article>
+        <article>
+          <h3 data-i18n="f5t">Private by design</h3>
+          <p data-i18n="f5p">Peer-to-peer via WebRTC. No backend, no database, no analytics, no cookies.</p>
+        </article>
+        <article>
+          <h3 data-i18n="f6t">Works everywhere</h3>
+          <p data-i18n="f6p">Desktop or phone, light or dark mode, English or German – right in the browser.</p>
+        </article>
+      </div>
+
+      <h2 data-i18n="howTitle">How it works</h2>
+      <ol class="steps">
+        <li data-i18n="how1"><strong>Create a room</strong> and pick a card deck.</li>
+        <li data-i18n="how2"><strong>Share the invite link</strong> with your team.</li>
+        <li data-i18n="how3"><strong>Vote, reveal, discuss</strong> – then start the next round.</li>
+      </ol>
+
+      <h2 data-i18n="faqTitle">Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary data-i18n="q1">Is Open Planning Poker really free?</summary>
+          <p data-i18n="a1">Yes. It is completely free and open source – no paid plans, no ads, no limits on rooms or participants.</p>
+        </details>
+        <details>
+          <summary data-i18n="q2">Do I need an account?</summary>
+          <p data-i18n="a2">No. Enter a name, create a room and share the invite link. Nobody needs to sign up.</p>
+        </details>
+        <details>
+          <summary data-i18n="q3">Is my data stored or tracked?</summary>
+          <p data-i18n="a3">No. There is no backend, no database, no analytics and no cookies. Votes travel directly between the participants' browsers via WebRTC. Details are in the <a href="./datenschutz.html">privacy policy</a>.</p>
+        </details>
+        <details>
+          <summary data-i18n="q4">How many people can join a room?</summary>
+          <p data-i18n="a4">Typical scrum teams of up to about 15–20 people work well. Because everyone connects directly, very large groups depend on the participants' browsers and networks.</p>
+        </details>
+        <details>
+          <summary data-i18n="q5">What is Planning Poker?</summary>
+          <p data-i18n="a5">Planning Poker (also called Scrum Poker) is a consensus-based technique for estimating effort in agile teams. Everyone picks a card in secret, all cards are revealed at once and differences are discussed.</p>
+        </details>
+      </div>
+
+      <!--if:bmc-->
+      <div class="support">
+        <p data-i18n="supportText">Open Planning Poker is free and stays free. If it saves your team time, you can buy me a coffee.</p>
+        <a class="bmc" href="{{BMC_URL}}" target="_blank" rel="noopener">☕ <span data-i18n="supportBtn">Buy me a coffee</span></a>
+      </div>
+      <!--endif:bmc-->
+    </section>
+
+    <footer class="site-footer">
+      <span>© {{YEAR}} Open Planning Poker</span>
+      <a href="https://github.com/DavidReineke-main/openplanningpoker" target="_blank" rel="noopener">GitHub</a>
+      <a href="./datenschutz.html" data-i18n="privacy">Privacy</a>
+      <!--if:imprint--><a href="./impressum.html" data-i18n="imprint">Imprint</a><!--endif:imprint-->
+    </footer>
+
     <div id="toasts" aria-live="polite"></div>
     <script type="module" src="./src/main.js"></script>
   </body>

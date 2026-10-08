@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#7c5cff" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script>
+      try { const t = localStorage.getItem('opp:theme'); if (t) document.documentElement.dataset.theme = JSON.parse(t) } catch {}
+    </script>
+    <title>Datenschutzerklärung / Privacy Policy | Open Planning Poker</title>
+    <meta name="description" content="Datenschutzerklärung von Open Planning Poker: kein Backend, kein Tracking, keine Cookies." />
+    <link rel="canonical" href="{{SITE_URL}}datenschutz.html" />
+  </head>
+  <body>
+    <main class="legal">
+      <nav class="legal-nav">
+        <a class="brand" href="./"><img src="./favicon.svg" width="28" height="28" alt="" /><span>Open Planning Poker</span></a>
+        <button class="icon-btn theme-btn" title="Design wechseln" aria-label="Design wechseln"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      </nav>
+      <h1>Datenschutzerklärung</h1>
+      <p class="summary">
+        <strong>Kurz gesagt:</strong> Open Planning Poker hat kein eigenes Backend und keine Datenbank. Es gibt kein Tracking, keine Analyse-Tools,
+        keine Werbung und keine Cookies. Namen, Stimmen und Thema werden ausschließlich direkt zwischen den Browsern der Teilnehmenden
+        eines Raums übertragen und nirgends zentral gespeichert. Technisch unvermeidbar ist, dass einige Dienste (Hosting, Verbindungsaufbau)
+        deine IP-Adresse sehen – das ist unten genau beschrieben.
+      </p>
+      <p class="summary" lang="en">
+        <strong>In short (English):</strong> no backend, no database, no tracking, no analytics, no ads, no cookies. Names, votes and the topic
+        travel only directly between the browsers in a room. Your IP address is necessarily visible to the hosting provider (GitHub Pages),
+        to public Nostr relays and STUN servers used to set up the connection, and to the other participants in your room.
+      </p>
+
+      <h2>1. Verantwortlicher</h2>
+      <!--if:imprint-->
+      <p>
+        {{OWNER_NAME}}<br />
+        {{OWNER_STREET}}<br />
+        {{OWNER_CITY}}<br />
+        {{OWNER_COUNTRY}}<br />
+        E-Mail: <a href="mailto:{{OWNER_EMAIL}}">{{OWNER_EMAIL}}</a>
+      </p>
+      <!--endif:imprint-->
+      <!--if:no-imprint-->
+      <p>Die Angaben zum Verantwortlichen werden in Kürze ergänzt.</p>
+      <!--endif:no-imprint-->
+
+      <h2>2. Hosting über GitHub Pages</h2>
+      <p>
+        Diese Website wird als statische Seite über GitHub Pages bereitgestellt (GitHub, Inc., 88 Colin P. Kelly Jr. Street,
+        San Francisco, CA 94107, USA). Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten, insbesondere deine
+        IP-Adresse, Datum und Uhrzeit, aufgerufene Datei, Browser-Kennung (User-Agent) und Referrer, um die Seite auszuliefern und die
+        Sicherheit des Dienstes zu gewährleisten. Auf diese Protokolle habe ich keinen Zugriff.
+      </p>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und zuverlässigen Bereitstellung der Website).
+        Eine Übermittlung in die USA ist möglich; GitHub ist unter dem EU-U.S. Data Privacy Framework zertifiziert (Art. 45 DSGVO).
+        Weitere Informationen: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.
+      </p>
+
+      <h2>3. Peer-to-Peer-Verbindung im Raum (WebRTC)</h2>
+      <p>
+        Wenn du einen Raum betrittst, baut dein Browser direkte, verschlüsselte WebRTC-Verbindungen zu den anderen Teilnehmenden desselben
+        Raums auf. Darüber werden dein gewählter Anzeigename, deine Rolle (Mitspielen/Zuschauen), deine Stimme sowie der Raumzustand
+        (Thema, Kartenset, Runde, aufgedeckt ja/nein) übertragen. Diese Daten werden nicht auf einem Server gespeichert.
+      </p>
+      <p>
+        Für eine direkte Verbindung ist es technisch notwendig, dass die beteiligten Browser ihre IP-Adressen austauschen. Die anderen
+        Teilnehmenden eines Raums können daher deine IP-Adresse sehen. Teile den Einladungslink nur mit Personen, mit denen du schätzen möchtest.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir genutzten Funktion) bzw. Art. 6 Abs. 1 lit. f DSGVO.
+      </p>
+
+      <h2>4. Verbindungsaufbau über öffentliche Nostr-Relays</h2>
+      <p>
+        Damit sich die Browser finden, werden die Verbindungsangebote einmalig über öffentliche, von Dritten betriebene
+        <a href="https://nostr.com" target="_blank" rel="noopener">Nostr</a>-Relays ausgetauscht (Bibliothek
+        <a href="https://github.com/dmotz/trystero" target="_blank" rel="noopener">Trystero</a>). Dabei erhalten die Relay-Betreiber
+        deine IP-Adresse (durch die WebSocket-Verbindung), eine pseudonyme Raum-Kennung sowie die Verbindungsangebote. Die Verbindungsangebote
+        sind mit einem aus dem Raumcode abgeleiteten Schlüssel (AES-GCM) verschlüsselt. Namen, Stimmen und Raumthemen werden nicht über die Relays
+        übertragen. Die Relays können weltweit, auch außerhalb der EU, betrieben werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
+        (berechtigtes Interesse an einer Funktion ohne eigenen Server).
+      </p>
+
+      <h2>5. STUN-Server</h2>
+      <p>
+        Um die eigene öffentliche Netzwerkadresse für die direkte Verbindung zu ermitteln, fragt dein Browser öffentliche STUN-Server ab
+        (Google LLC, <code>stun.l.google.com</code>, und Cloudflare, Inc., <code>stun.cloudflare.com</code>). Diese erhalten dabei deine IP-Adresse.
+        Es werden keine Inhalte übertragen. Beide Anbieter sind unter dem EU-U.S. Data Privacy Framework zertifiziert. Rechtsgrundlage ist
+        Art. 6 Abs. 1 lit. f DSGVO.
+      </p>
+
+      <h2>6. Lokale Speicherung im Browser (kein Cookie)</h2>
+      <p>
+        Die App speichert im <code>localStorage</code> deines Browsers deinen Anzeigenamen, das gewählte Design, das zuletzt genutzte Kartenset,
+        die Zuschauer-Einstellung und den letzten Zustand besuchter Räume, damit du sie nicht jedes Mal neu eingeben musst. Diese Daten verlassen
+        dein Gerät nicht (außer Name und Raumzustand an die Teilnehmenden des Raums, siehe Nr. 3). Die Speicherung ist für den von dir
+        ausdrücklich gewünschten Dienst unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst die Daten jederzeit über die
+        Browser-Einstellungen („Websitedaten löschen“) entfernen.
+      </p>
+
+      <h2>7. Externe Links</h2>
+      <p>
+        Die Website enthält Links zu GitHub<!--if:bmc--> und zu „Buy Me a Coffee“ (Publiship Inc., USA)<!--endif:bmc-->. Es werden keine Skripte,
+        Widgets oder Schriftarten dieser Anbieter eingebunden. Daten werden an diese Anbieter erst übertragen, wenn du einen solchen Link anklickst;
+        dann gilt die Datenschutzerklärung des jeweiligen Anbieters.
+      </p>
+
+      <h2>8. Keine Analyse, keine Werbung, keine Profilbildung</h2>
+      <p>
+        Es werden keine Analyse- oder Tracking-Dienste, keine Werbenetzwerke, keine Social-Media-Plugins und keine externen Schriftarten verwendet.
+        Es findet keine automatisierte Entscheidungsfindung oder Profilbildung statt.
+      </p>
+
+      <h2>9. Deine Rechte</h2>
+      <p>
+        Du hast nach der DSGVO das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18),
+        Datenübertragbarkeit (Art. 20) und Widerspruch gegen Verarbeitungen auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (Art. 21).
+        Da ich selbst keine personenbezogenen Daten speichere, kann ich in der Regel keine Auskunft über konkrete Daten geben; wende dich für
+        Hosting-Protokolle an GitHub. Außerdem hast du das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO).
+      </p>
+
+      <p class="muted">Stand: Oktober 2026</p>
+    </main>
+    <footer class="site-footer">
+      <a href="./">← Zur App / Back to the app</a>
+      <a href="./datenschutz.html">Datenschutz</a>
+      <!--if:imprint--><a href="./impressum.html">Impressum</a><!--endif:imprint-->
+    </footer>
+    <script type="module" src="./src/legal.js"></script>
+  </body>
+</html>

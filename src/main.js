@@ -1,5 +1,6 @@
 import { joinRoom, selfId } from 'trystero'
-import { t } from './i18n.js'
+import { t, translateStatic } from './i18n.js'
+import site from '../site.config.js'
 import './style.css'
 
 const APP_ID = 'openplanningpoker-v1'
@@ -17,6 +18,7 @@ const ICONS = {
   link: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
   theme: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
   leave: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>',
+  coffee: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>',
   eye: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   logo: '<svg viewBox="0 0 64 64" width="28" height="28"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22c3a6"/></linearGradient></defs><rect x="14" y="6" width="36" height="50" rx="7" fill="url(#lg)" transform="rotate(12 32 32)"/><rect x="10" y="8" width="36" height="50" rx="7" fill="#fff" stroke="#7c5cff" stroke-width="3"/><text x="28" y="42" font-family="system-ui,sans-serif" font-size="24" font-weight="800" text-anchor="middle" fill="#7c5cff">5</text></svg>',
 }
@@ -88,10 +90,15 @@ const cardValue = (c) => (c === '½' ? 0.5 : /^\d+$/.test(c) ? Number(c) : null)
 const app = $('#app')
 let session = null
 
+const BMC_URL = site.buyMeACoffee ? `https://buymeacoffee.com/${encodeURIComponent(site.buyMeACoffee)}` : ''
+const HOME_TITLE = document.title
+
 function route() {
   session?.destroy()
   session = null
   const id = parseRoomId(location.hash.slice(1))
+  document.body.classList.toggle('in-room', !!id)
+  scrollTo(0, 0)
   if (id) {
     if (store.get('name', '')) enterRoom(id)
     else renderJoin(id)
@@ -106,7 +113,7 @@ window.addEventListener('pagehide', () => session?.destroy())
 // ---------- home ----------
 
 function renderHome() {
-  document.title = 'Open Planning Poker'
+  document.title = HOME_TITLE
   const deckOptions = Object.entries(DECKS)
     .map(([k, d]) => `<option value="${k}">${d.label} (${d.cards.slice(0, 6).join(', ')}…)</option>`)
     .join('')
@@ -134,7 +141,6 @@ function renderHome() {
         </form>
       </section>
       <p class="note">🔒 ${t('p2pNote')}</p>
-      <footer><a href="https://github.com/DavidReineke-main/openplanningpoker" target="_blank" rel="noopener">GitHub</a></footer>
     </main>`),
   )
   const create = $('form.create')
@@ -244,6 +250,7 @@ function createSession(roomId) {
           <select class="deck-select" title="${t('deck')}">${Object.entries(DECKS)
             .map(([k, d]) => `<option value="${k}">${d.label}</option>`)
             .join('')}</select>
+          ${BMC_URL ? `<a class="icon-btn coffee-btn" href="${BMC_URL}" target="_blank" rel="noopener" title="${t('coffee')}">${ICONS.coffee}</a>` : ''}
           <button class="icon-btn theme-btn" title="${t('toggleTheme')}">${ICONS.theme}</button>
           <a class="icon-btn" href="#" title="${t('leave')}">${ICONS.leave}</a>
         </div>
@@ -265,6 +272,10 @@ function createSession(roomId) {
           <span class="me-name"><input class="name-input" maxlength="24" aria-label="${t('yourName')}"><button class="btn small role-btn"></button></span>
         </div>
         <div class="cards"></div>
+        <nav class="legal-links">
+          <a href="./datenschutz.html">${t('privacy')}</a>
+          ${site.owner?.name ? `<a href="./impressum.html">${t('imprint')}</a>` : ''}
+        </nav>
       </footer>
     </div>`)
   app.replaceChildren(view)
@@ -543,4 +554,5 @@ function createSession(roomId) {
   }
 }
 
+translateStatic()
 route()
