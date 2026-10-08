@@ -8,13 +8,13 @@
     <script>
       try { const t = localStorage.getItem('opp:theme'); if (t) document.documentElement.dataset.theme = JSON.parse(t) } catch {}
     </script>
-    <title>Impressum | Open Planning Poker</title>
+    <title>Impressum | OpenEstimate</title>
     <meta name="robots" content="noindex, follow" />
   </head>
   <body>
     <main class="legal">
       <nav class="legal-nav">
-        <a class="brand" href="./"><img src="./favicon.svg" width="28" height="28" alt="" /><span>Open Planning Poker</span></a>
+        <a class="brand" href="./"><img src="./favicon.svg" width="28" height="28" alt="" /><span>OpenEstimate</span></a>
         <button class="icon-btn theme-btn" title="Design wechseln" aria-label="Design wechseln"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
       </nav>
       <h1>Impressum</h1>
@@ -32,7 +32,7 @@
 
       <h2>Hinweise</h2>
       <p>
-        Open Planning Poker ist ein kostenloses, privat betriebenes Open-Source-Projekt ohne Gewinnerzielungsabsicht.
+        OpenEstimate ist ein kostenloses, privat betriebenes Open-Source-Projekt ohne Gewinnerzielungsabsicht.
         Freiwillige Unterstützungen („Buy me a coffee“) sind Spenden ohne Gegenleistung.
       </p>
 
@@ -45,14 +45,17 @@
 
       <h2>Urheberrecht</h2>
       <p>
-        Der Quellcode von Open Planning Poker ist auf
-        <a href="https://github.com/DavidReineke-main/openplanningpoker" target="_blank" rel="noopener">GitHub</a> öffentlich einsehbar.
+        Der Quellcode von OpenEstimate ist auf
+        <a href="https://github.com/DavidReineke-main/openestimate" target="_blank" rel="noopener">GitHub</a> öffentlich einsehbar und steht
+        unter der MIT-Lizenz. Verwendete Bibliotheken Dritter und deren Lizenzen: <a href="./licenses.txt">licenses.txt</a>.
       </p>
     </main>
     <footer class="site-footer">
       <a href="./">← Zur App / Back to the app</a>
       <a href="./datenschutz.html">Datenschutz</a>
       <!--if:imprint--><a href="./impressum.html">Impressum</a><!--endif:imprint-->
+      <a href="./licenses.txt">Lizenzen</a>
+      <small class="tm">Planning Poker® ist eine eingetragene Marke der Mountain Goat Software, LLC. OpenEstimate steht in keiner Verbindung zu Mountain Goat Software.</small>
     </footer>
     <script type="module" src="./src/legal.js"></script>
   </body>

@@ -1,6 +1,6 @@
 {
-  "name": "Open Planning Poker",
-  "short_name": "Planning Poker",
+  "name": "OpenEstimate",
+  "short_name": "OpenEstimate",
   "description": "Free, private peer-to-peer Planning Poker for agile teams.",
   "start_url": "./",
   "scope": "./",

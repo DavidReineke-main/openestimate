@@ -1,9 +1,9 @@
-# Open Planning Poker
+# OpenEstimate
 
-A lightweight, good-looking Planning Poker app for agile teams – **no backend, no sign-up**.
+A lightweight, good-looking planning poker app for agile teams – **no backend, no sign-up**.
 Create a room, share the link, estimate together.
 
-**Live:** https://davidreineke-main.github.io/openplanningpoker/
+**Live:** https://davidreineke-main.github.io/openestimate/
 
 ## Features
 
@@ -72,3 +72,11 @@ VITE_NOSTR_RELAYS=wss://relay.example.com,wss://relay2.example.com npm run build
 
 Pushes to `main` are built and deployed by `.github/workflows/deploy.yml`.
 In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+
+## License
+
+[MIT](LICENSE). Licenses of bundled third-party libraries are published with the app as `licenses.txt`.
+
+Planning Poker® is a registered trademark of Mountain Goat Software, LLC. OpenEstimate is an independent
+project and is not affiliated with Mountain Goat Software.
+

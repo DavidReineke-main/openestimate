@@ -1,11 +1,35 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'node:path'
+import { resolve, dirname } from 'node:path'
+import { readFileSync, readdirSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import site from './site.config.js'
 
 const hasImprint = Boolean(site.owner?.name)
 
 const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])
+
+// Collects the license texts of all runtime dependencies (they are bundled into the app, so their notices must ship too).
+function thirdPartyLicenses() {
+  const require = createRequire(import.meta.url)
+  const seen = new Map()
+  const visit = (name, from) => {
+    if (seen.has(name)) return
+    const pkgPath = createRequire(from).resolve(`${name}/package.json`)
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'))
+    const dir = dirname(pkgPath)
+    const file = readdirSync(dir).find((f) => /^licen[cs]e/i.test(f))
+    seen.set(name, { pkg, text: file ? readFileSync(resolve(dir, file), 'utf8').trim() : `License: ${pkg.license}` })
+    for (const dep of Object.keys(pkg.dependencies || {})) visit(dep, pkgPath)
+  }
+  const root = require('./package.json')
+  for (const dep of Object.keys(root.dependencies || {})) visit(dep, import.meta.url)
+  const own = readFileSync(resolve(import.meta.dirname, 'LICENSE'), 'utf8').trim()
+  const parts = [...seen.values()]
+    .sort((a, b) => a.pkg.name.localeCompare(b.pkg.name))
+    .map(({ pkg, text }) => `${pkg.name}@${pkg.version} (${pkg.license})\n${'-'.repeat(60)}\n${text}`)
+  return `OpenEstimate\n${'='.repeat(60)}\n${own}\n\n\nThird-party software included in this app\n${'='.repeat(60)}\n\n${parts.join('\n\n\n')}\n`
+}
 
 // Fills {{placeholders}} from site.config.js and drops <!--if:key-->…<!--endif:key--> blocks whose flag is off.
 function sitePlugin() {
@@ -34,6 +58,7 @@ function sitePlugin() {
         .replace(/\{\{(\w+)\}\}/g, (_, key) => esc(vars[key]))
     },
     generateBundle() {
+      this.emitFile({ type: 'asset', fileName: 'licenses.txt', source: thirdPartyLicenses() })
       const pages = ['', 'datenschutz.html', ...(hasImprint ? ['impressum.html'] : [])]
       const today = new Date().toISOString().slice(0, 10)
       const urls = pages

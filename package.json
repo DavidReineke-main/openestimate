@@ -1,7 +1,7 @@
 {
-  "name": "openplanningpoker",
+  "name": "openestimate",
   "version": "1.0.0",
-  "description": "Lightweight serverless peer-to-peer Planning Poker",
+  "description": "OpenEstimate – lightweight serverless peer-to-peer estimation (planning poker) for agile teams",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DavidReineke-main/openplanningpoker.git"
+    "url": "git+https://github.com/DavidReineke-main/openestimate.git"
   },
   "bugs": {
-    "url": "https://github.com/DavidReineke-main/openplanningpoker/issues"
+    "url": "https://github.com/DavidReineke-main/openestimate/issues"
   },
-  "homepage": "https://github.com/DavidReineke-main/openplanningpoker#readme",
+  "homepage": "https://github.com/DavidReineke-main/openestimate#readme",
   "dependencies": {
     "trystero": "^0.25.4"
   },
@@ -22,5 +22,6 @@
     "vite": "^8.3.1"
   },
   "private": true,
-  "type": "module"
+  "type": "module",
+  "license": "MIT"
 }

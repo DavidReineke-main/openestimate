@@ -1,7 +1,7 @@
 // Central site settings. Edit this file, commit, push – the site redeploys automatically.
 export default {
   // Public URL of the deployed app (used for canonical link, sitemap, social previews). Must end with "/".
-  url: 'https://davidreineke-main.github.io/openplanningpoker/',
+  url: 'https://davidreineke-main.github.io/openestimate/',
 
   // Your Buy Me a Coffee username (https://buymeacoffee.com/<username>). Leave empty to hide the button.
   buyMeACoffee: '',

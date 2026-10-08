@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Planning Poker Online – No Sign-up, No Tracking | Open Planning Poker</title>
+    <title>Free Planning Poker Online – No Sign-up, No Tracking | OpenEstimate</title>
     <meta name="description" content="Free online Planning Poker (Scrum Poker) for agile teams. Create a room, share the link and estimate story points together – no sign-up, no ads, no tracking, no backend. Open source." />
     <meta name="keywords" content="planning poker, scrum poker, planning poker online, free planning poker, agile estimation, story points, sprint planning, fibonacci, t-shirt sizing, planning poker kostenlos" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="author" content="Open Planning Poker" />
+    <meta name="author" content="OpenEstimate" />
+    <meta name="application-name" content="OpenEstimate" />
     <meta name="theme-color" content="#7c5cff" />
     <link rel="canonical" href="{{SITE_URL}}" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
@@ -17,18 +18,18 @@
     <!--if:google-verification--><meta name="google-site-verification" content="{{GOOGLE_SITE_VERIFICATION}}" /><!--endif:google-verification-->
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Open Planning Poker" />
-    <meta property="og:title" content="Open Planning Poker – free, private Planning Poker for agile teams" />
+    <meta property="og:site_name" content="OpenEstimate" />
+    <meta property="og:title" content="OpenEstimate – free, private Planning Poker for agile teams" />
     <meta property="og:description" content="Create a room, share the link, estimate together. 100% free, no sign-up, no tracking, no backend." />
     <meta property="og:url" content="{{SITE_URL}}" />
     <meta property="og:image" content="{{SITE_URL}}og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Open Planning Poker – cards on a table" />
+    <meta property="og:image:alt" content="OpenEstimate – cards on a table" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="de_DE" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Open Planning Poker – free, private Planning Poker" />
+    <meta name="twitter:title" content="OpenEstimate – free, private Planning Poker" />
     <meta name="twitter:description" content="Create a room, share the link, estimate together. No sign-up, no tracking, no backend." />
     <meta name="twitter:image" content="{{SITE_URL}}og-image.png" />
 
@@ -38,9 +39,8 @@
         "@graph": [
           {
             "@type": "WebApplication",
-            "name": "Open Planning Poker",
-            "alternateName": ["Scrum Poker", "Planning Poker Online"],
-            "url": "{{SITE_URL}}",
+            "name": "OpenEstimate",
+                        "url": "{{SITE_URL}}",
             "image": "{{SITE_URL}}og-image.png",
             "description": "Free, open-source online Planning Poker for agile teams. Peer-to-peer, no sign-up, no tracking, no backend.",
             "applicationCategory": "BusinessApplication",
@@ -63,7 +63,7 @@
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "Is Open Planning Poker really free?",
+                "name": "Is OpenEstimate really free?",
                 "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is completely free and open source – no paid plans, no ads, no limits on rooms or participants." }
               },
               {
@@ -98,7 +98,7 @@
   <body>
     <div id="app">
       <noscript>
-        <p style="text-align:center;padding:48px 16px">Open Planning Poker needs JavaScript to run. / Open Planning Poker benötigt JavaScript.</p>
+        <p style="text-align:center;padding:48px 16px">OpenEstimate needs JavaScript to run. / OpenEstimate benötigt JavaScript.</p>
       </noscript>
     </div>
 
@@ -112,7 +112,7 @@
 
       <h2 id="about-title" data-i18n="aboutTitle">Free online Planning Poker for agile teams</h2>
       <p class="lead" data-i18n="aboutLead">
-        Open Planning Poker is a fast, good-looking Scrum Poker app for sprint planning and story point estimation.
+        OpenEstimate is a fast, good-looking Scrum Poker app for sprint planning and story point estimation.
         Create a room, send the link to your team and start estimating – without accounts, ads or tracking.
         Votes go straight from browser to browser, so nothing ever lands on a server.
       </p>
@@ -154,7 +154,7 @@
       <h2 data-i18n="faqTitle">Frequently asked questions</h2>
       <div class="faq">
         <details>
-          <summary data-i18n="q1">Is Open Planning Poker really free?</summary>
+          <summary data-i18n="q1">Is OpenEstimate really free?</summary>
           <p data-i18n="a1">Yes. It is completely free and open source – no paid plans, no ads, no limits on rooms or participants.</p>
         </details>
         <details>
@@ -177,17 +177,19 @@
 
       <!--if:bmc-->
       <div class="support">
-        <p data-i18n="supportText">Open Planning Poker is free and stays free. If it saves your team time, you can buy me a coffee.</p>
+        <p data-i18n="supportText">OpenEstimate is free and stays free. If it saves your team time, you can buy me a coffee.</p>
         <a class="bmc" href="{{BMC_URL}}" target="_blank" rel="noopener">☕ <span data-i18n="supportBtn">Buy me a coffee</span></a>
       </div>
       <!--endif:bmc-->
     </section>
 
     <footer class="site-footer">
-      <span>© {{YEAR}} Open Planning Poker</span>
-      <a href="https://github.com/DavidReineke-main/openplanningpoker" target="_blank" rel="noopener">GitHub</a>
+      <span>© {{YEAR}} OpenEstimate</span>
+      <a href="https://github.com/DavidReineke-main/openestimate" target="_blank" rel="noopener">GitHub</a>
       <a href="./datenschutz.html" data-i18n="privacy">Privacy</a>
       <!--if:imprint--><a href="./impressum.html" data-i18n="imprint">Imprint</a><!--endif:imprint-->
+      <a href="./licenses.txt" data-i18n="licenses">Licenses</a>
+      <small class="tm" data-i18n="trademark">Planning Poker® is a registered trademark of Mountain Goat Software, LLC. OpenEstimate is an independent project and is not affiliated with Mountain Goat Software.</small>
     </footer>
 
     <div id="toasts" aria-live="polite"></div>

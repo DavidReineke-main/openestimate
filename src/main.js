@@ -3,7 +3,7 @@ import { t, translateStatic } from './i18n.js'
 import site from '../site.config.js'
 import './style.css'
 
-const APP_ID = 'openplanningpoker-v1'
+const APP_ID = 'openestimate-v1'
 // Optional: comma-separated Nostr relay URLs used for the WebRTC handshake (defaults to Trystero's public relays).
 const RELAYS = (import.meta.env.VITE_NOSTR_RELAYS || '').split(',').map((s) => s.trim()).filter(Boolean)
 
@@ -125,7 +125,7 @@ function renderHome() {
         <div class="fan" aria-hidden="true">
           <span>3</span><span>5</span><span>8</span><span>13</span><span>?</span>
         </div>
-        <h1>Open Planning Poker</h1>
+        <h1>OpenEstimate</h1>
         <p class="tagline">${t('tagline')}</p>
       </div>
       <section class="panel">
@@ -218,7 +218,7 @@ function enterRoom(roomId) {
 }
 
 function createSession(roomId) {
-  document.title = `${roomId} · Open Planning Poker`
+  document.title = `${roomId} · OpenEstimate`
 
   let state = store.get('room:' + roomId, null)
   if (!validState(state)) state = initialState(store.get('deck', 'fibonacci'))
@@ -243,7 +243,7 @@ function createSession(roomId) {
   const view = h(`
     <div class="room">
       <header class="topbar">
-        <a class="brand" href="#">${ICONS.logo}<span>Open Planning Poker</span></a>
+        <a class="brand" href="#">${ICONS.logo}<span>OpenEstimate</span></a>
         <div class="status"><span class="dot"></span><span class="status-text"></span></div>
         <div class="actions">
           <button class="btn invite">${ICONS.link}<span>${t('invite')}</span></button>

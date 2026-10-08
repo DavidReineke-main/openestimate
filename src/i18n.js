@@ -95,7 +95,7 @@ const staticDe = {
   trustOss: 'Open Source',
   aboutTitle: 'Kostenloses Online-Planning-Poker für agile Teams',
   aboutLead:
-    'Open Planning Poker ist eine schnelle, schöne Scrum-Poker-App für Sprint Planning und Story-Point-Schätzungen. Raum erstellen, Link ans Team schicken und losschätzen – ohne Konto, Werbung oder Tracking. Die Stimmen gehen direkt von Browser zu Browser, nichts landet auf einem Server.',
+    'OpenEstimate ist eine schnelle, schöne Scrum-Poker-App für Sprint Planning und Story-Point-Schätzungen. Raum erstellen, Link ans Team schicken und losschätzen – ohne Konto, Werbung oder Tracking. Die Stimmen gehen direkt von Browser zu Browser, nichts landet auf einem Server.',
   f1t: 'Räume mit einem Klick',
   f1p: 'Raum erstellen und das Team per Link oder Raumcode einladen. Niemand muss sich registrieren.',
   f2t: 'Alle gängigen Kartensets',
@@ -113,7 +113,7 @@ const staticDe = {
   how2: '<strong>Einladungslink teilen</strong> mit deinem Team.',
   how3: '<strong>Abstimmen, aufdecken, diskutieren</strong> – dann die nächste Runde starten.',
   faqTitle: 'Häufige Fragen',
-  q1: 'Ist Open Planning Poker wirklich kostenlos?',
+  q1: 'Ist OpenEstimate wirklich kostenlos?',
   a1: 'Ja. Komplett kostenlos und Open Source – keine Bezahlpläne, keine Werbung, keine Begrenzung bei Räumen oder Teilnehmenden.',
   q2: 'Brauche ich ein Konto?',
   a2: 'Nein. Name eingeben, Raum erstellen, Einladungslink teilen. Niemand muss sich anmelden.',
@@ -123,10 +123,13 @@ const staticDe = {
   a4: 'Übliche Scrum-Teams bis etwa 15–20 Personen funktionieren gut. Da sich alle direkt verbinden, hängen sehr große Gruppen von den Browsern und Netzwerken der Teilnehmenden ab.',
   q5: 'Was ist Planning Poker?',
   a5: 'Planning Poker (auch Scrum Poker) ist eine Konsens-Technik zum Schätzen von Aufwänden in agilen Teams. Alle wählen verdeckt eine Karte, alle Karten werden gleichzeitig aufgedeckt und Unterschiede werden besprochen.',
-  supportText: 'Open Planning Poker ist kostenlos und bleibt es auch. Wenn es deinem Team Zeit spart, kannst du mir einen Kaffee spendieren.',
+  supportText: 'OpenEstimate ist kostenlos und bleibt es auch. Wenn es deinem Team Zeit spart, kannst du mir einen Kaffee spendieren.',
   supportBtn: 'Spendier mir einen Kaffee',
   privacy: 'Datenschutz',
   imprint: 'Impressum',
+  licenses: 'Lizenzen',
+  trademark:
+    'Planning Poker® ist eine eingetragene Marke der Mountain Goat Software, LLC. OpenEstimate ist ein unabhängiges Projekt und steht in keiner Verbindung zu Mountain Goat Software.',
 }
 
 export const lang = (navigator.language || 'en').toLowerCase().startsWith('de') ? 'de' : 'en'
