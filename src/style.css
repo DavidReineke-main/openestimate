@@ -904,6 +904,15 @@ body.in-room .site-footer {
   font-size: 0.85rem;
   color: var(--muted);
 }
+.bmc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.bmc-link svg {
+  flex: none;
+  color: #c98a00;
+}
 .site-footer .tm {
   flex-basis: 100%;
   text-align: center;

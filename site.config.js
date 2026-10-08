@@ -3,7 +3,7 @@ export default {
   // Public URL of the deployed app (used for canonical link, sitemap, social previews). Must end with "/".
   url: 'https://davidreineke-main.github.io/openestimate/',
 
-  // Your Buy Me a Coffee username (https://buymeacoffee.com/<username>). Leave empty to hide the button.
+  // Your Buy Me a Coffee username or full page URL. Leave empty to hide the button.
   buyMeACoffee: 'https://buymeacoffee.com/davidreineke',
 
   // Imprint / Impressum (§ 5 DDG). Leave `name` empty to hide the Impressum.

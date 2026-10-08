@@ -5,6 +5,10 @@ import { createRequire } from 'node:module'
 import site from './site.config.js'
 
 const hasImprint = Boolean(site.owner?.name)
+// Accepts a Buy Me a Coffee username or a full URL.
+const bmcUrl = /^https?:\/\//.test(site.buyMeACoffee || '')
+  ? site.buyMeACoffee
+  : site.buyMeACoffee ? `https://buymeacoffee.com/${site.buyMeACoffee}` : ''
 
 const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])
@@ -41,14 +45,14 @@ function sitePlugin() {
     OWNER_COUNTRY: site.owner?.country,
     OWNER_EMAIL: site.owner?.email,
     GOOGLE_SITE_VERIFICATION: site.googleSiteVerification,
-    BMC_URL: site.buyMeACoffee ? `https://buymeacoffee.com/${site.buyMeACoffee}` : '',
+    BMC_URL: bmcUrl,
     YEAR: new Date().getFullYear(),
   }
   const flags = {
     imprint: hasImprint,
     'no-imprint': !hasImprint,
     'google-verification': Boolean(site.googleSiteVerification),
-    bmc: Boolean(site.buyMeACoffee),
+    bmc: Boolean(bmcUrl),
   }
   return {
     name: 'site-config',

@@ -91,7 +91,9 @@ const cardValue = (c) => (c === '½' ? 0.5 : /^\d+$/.test(c) ? Number(c) : null)
 const app = $('#app')
 let session = null
 
-const BMC_URL = site.buyMeACoffee ? `https://buymeacoffee.com/${encodeURIComponent(site.buyMeACoffee)}` : ''
+const BMC_URL = /^https?:\/\//.test(site.buyMeACoffee || '')
+  ? site.buyMeACoffee
+  : site.buyMeACoffee ? `https://buymeacoffee.com/${encodeURIComponent(site.buyMeACoffee)}` : ''
 const HOME_TITLE = document.title
 
 function route() {
@@ -276,6 +278,7 @@ function createSession(roomId) {
         <nav class="legal-links">
           <a href="./datenschutz.html">${t('privacy')}</a>
           ${site.owner?.name ? `<a href="./impressum.html">${t('imprint')}</a>` : ''}
+          ${BMC_URL ? `<a class="bmc-link" href="${BMC_URL}" target="_blank" rel="noopener">${ICONS.coffee}<span>Buy me a coffee</span></a>` : ''}
         </nav>
       </footer>
     </div>`)
