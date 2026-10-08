@@ -1,5 +1,6 @@
 import { joinRoom, selfId } from 'trystero'
 import { t, translateStatic } from './i18n.js'
+import { confetti } from './confetti.js'
 import site from '../site.config.js'
 import './style.css'
 
@@ -295,6 +296,9 @@ function createSession(roomId) {
     deckSelect: $('.deck-select', view),
   }
   const seatEls = new Map()
+  let celebratedRound = null
+  let confettiTimer
+  let stopConfetti
   let renderedDeck = null
 
   // --- networking ---
@@ -469,6 +473,12 @@ function createSession(roomId) {
       suggestion = sorted.reduce((best, cur) => (cur[1] > best[1] ? cur : best))[0]
     }
     const consensus = counts.size === 1 && votes.length > 1
+    if (consensus && celebratedRound !== state.round) {
+      // Once per round, timed to land right after the cards have flipped.
+      celebratedRound = state.round
+      clearTimeout(confettiTimer)
+      confettiTimer = setTimeout(() => (stopConfetti = confetti()), 450)
+    }
     const agreement = Math.round((max / votes.length) * 100)
 
     el.results.innerHTML = `
@@ -549,6 +559,8 @@ function createSession(roomId) {
   return {
     destroy() {
       clearTimeout(topicTimer)
+      clearTimeout(confettiTimer)
+      stopConfetti?.()
       room.leave()
     },
   }
