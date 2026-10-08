@@ -63,6 +63,8 @@ function sitePlugin() {
     },
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'licenses.txt', source: thirdPartyLicenses() })
+      // Only effective when the site is served from a domain root (e.g. a custom domain).
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${site.url}sitemap.xml\n` })
       const pages = ['', 'datenschutz.html', ...(hasImprint ? ['impressum.html'] : [])]
       const today = new Date().toISOString().slice(0, 10)
       const urls = pages

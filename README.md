@@ -46,8 +46,7 @@ Edit, commit, push – the site redeploys automatically.
 - Descriptive title/description, canonical URL, Open Graph & Twitter cards with a preview image
 - JSON-LD (`WebApplication` + `FAQPage`) for rich results
 - Crawlable landing content (features, how-to, FAQ) in plain HTML, translated to German at runtime
-- `sitemap.xml` is generated at build time – submit it in Google Search Console
-  (`robots.txt` only works at a domain root, so it is not used on a `github.io/<repo>` path; a custom domain helps ranking)
+- `sitemap.xml` and `robots.txt` are generated at build time – submit the sitemap in Google Search Console
 
 ## Privacy
 
