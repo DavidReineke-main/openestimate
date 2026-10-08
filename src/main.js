@@ -1,5 +1,5 @@
 import { joinRoom, selfId } from 'trystero'
-import { t, translateStatic } from './i18n.js'
+import { t, translateStatic, lang, setLang, LANGS } from './i18n.js'
 import { confetti } from './confetti.js'
 import site from '../site.config.js'
 import './style.css'
@@ -76,6 +76,27 @@ function toast(msg) {
   setTimeout(() => el.remove(), 3000)
 }
 
+function langSwitch() {
+  return `<div class="lang-switch" role="group" aria-label="Language">${LANGS.map(
+    (l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang}">${l.toUpperCase()}</button>`,
+  ).join('')}</div>`
+}
+
+// Re-renders the current view in the chosen language, keeping what the user already typed.
+function bindLangSwitch(root, rerender) {
+  root.querySelector('.lang-switch').onclick = (e) => {
+    const btn = e.target.closest('button[data-lang]')
+    if (!btn || btn.dataset.lang === lang) return
+    const typed = [...root.querySelectorAll('input[name]')].map((i) => [i.name, i.type === 'checkbox' ? i.checked : i.value])
+    setLang(btn.dataset.lang)
+    rerender()
+    for (const [name, value] of typed) {
+      const input = app.querySelector(`input[name="${name}"]`)
+      if (input) input.type === 'checkbox' ? (input.checked = value) : (input.value = value)
+    }
+  }
+}
+
 function toggleTheme() {
   const root = document.documentElement
   const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
@@ -123,7 +144,7 @@ function renderHome() {
   app.replaceChildren(
     h(`
     <main class="home">
-      <button class="icon-btn theme-btn" title="${t('toggleTheme')}">${ICONS.theme}</button>
+      <div class="corner-actions">${langSwitch()}<button class="icon-btn theme-btn" title="${t('toggleTheme')}">${ICONS.theme}</button></div>
       <div class="hero">
         <div class="fan" aria-hidden="true">
           <span>3</span><span>5</span><span>8</span><span>13</span><span>?</span>
@@ -143,13 +164,13 @@ function renderHome() {
           <button class="btn" type="submit">${t('join')}</button>
         </form>
       </section>
-      <p class="note">🔒 ${t('p2pNote')}</p>
     </main>`),
   )
   const create = $('form.create')
   create.name.value = store.get('name', '')
   create.deck.value = store.get('deck', 'fibonacci')
   $('.theme-btn').onclick = toggleTheme
+  bindLangSwitch(app, renderHome)
   create.onsubmit = (e) => {
     e.preventDefault()
     store.set('name', cleanName(create.name.value))
@@ -173,6 +194,7 @@ function renderJoin(roomId) {
   app.replaceChildren(
     h(`
     <main class="home">
+      <div class="corner-actions">${langSwitch()}<button class="icon-btn theme-btn" title="${t('toggleTheme')}">${ICONS.theme}</button></div>
       <div class="hero small">
         <h1>${t('joinRoom')}</h1>
         <p class="room-code"></p>
@@ -187,6 +209,8 @@ function renderJoin(roomId) {
     </main>`),
   )
   $('.room-code').textContent = roomId
+  $('.theme-btn').onclick = toggleTheme
+  bindLangSwitch(app, () => renderJoin(roomId))
   const form = $('form.create')
   form.onsubmit = (e) => {
     e.preventDefault()

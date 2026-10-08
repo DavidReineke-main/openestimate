@@ -8,7 +8,6 @@ const strings = {
     or: 'or',
     joinPlaceholder: 'Room code or invite link',
     join: 'Join',
-    p2pNote: 'Free forever · no tracking · no backend. Votes travel directly between browsers (WebRTC).',
     joinRoom: 'Join room',
     spectator: 'Join as spectator',
     enter: "Let's go",
@@ -51,7 +50,6 @@ const strings = {
     or: 'oder',
     joinPlaceholder: 'Raumcode oder Einladungslink',
     join: 'Beitreten',
-    p2pNote: 'Für immer kostenlos · kein Tracking · kein Backend. Stimmen gehen direkt von Browser zu Browser (WebRTC).',
     joinRoom: 'Raum beitreten',
     spectator: 'Als Zuschauer beitreten',
     enter: 'Los geht’s',
@@ -132,14 +130,40 @@ const staticDe = {
     'Planning Poker® ist eine eingetragene Marke der Mountain Goat Software, LLC. OpenEstimate ist ein unabhängiges Projekt und steht in keiner Verbindung zu Mountain Goat Software.',
 }
 
-export const lang = (navigator.language || 'en').toLowerCase().startsWith('de') ? 'de' : 'en'
+export const LANGS = ['de', 'en']
+
+// An explicit choice wins; otherwise the first supported browser language, falling back to English.
+function detectLang() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('opp:lang'))
+    if (LANGS.includes(saved)) return saved
+  } catch {}
+  for (const l of navigator.languages || [navigator.language || '']) {
+    const code = String(l).slice(0, 2).toLowerCase()
+    if (LANGS.includes(code)) return code
+  }
+  return 'en'
+}
+
+export let lang = detectLang()
 document.documentElement.lang = lang
 
+export function setLang(next) {
+  if (!LANGS.includes(next) || next === lang) return
+  lang = next
+  document.documentElement.lang = lang
+  try {
+    localStorage.setItem('opp:lang', JSON.stringify(lang))
+  } catch {}
+  translateStatic()
+}
+
+// The static HTML is English; remember it so we can switch back from German.
+const originals = new WeakMap()
 export function translateStatic(root = document) {
-  if (lang !== 'de') return
   for (const el of root.querySelectorAll('[data-i18n]')) {
-    const v = staticDe[el.dataset.i18n]
-    if (v) el.innerHTML = v
+    if (!originals.has(el)) originals.set(el, el.innerHTML)
+    el.innerHTML = (lang === 'de' && staticDe[el.dataset.i18n]) || originals.get(el)
   }
 }
 

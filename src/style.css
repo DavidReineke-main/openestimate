@@ -173,10 +173,34 @@ label.check input {
   display: grid;
   gap: 24px;
 }
-.home .theme-btn {
+.corner-actions {
   position: absolute;
   top: 16px;
   right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lang-switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.lang-switch button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.lang-switch button[aria-pressed='true'] {
+  background: var(--accent);
+  color: #fff;
 }
 .hero {
   text-align: center;
@@ -264,13 +288,6 @@ label.check input {
   flex: 1;
   height: 1px;
   background: var(--border);
-}
-.note {
-  margin: 0;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.5;
 }
 
 /* ---------- room ---------- */
